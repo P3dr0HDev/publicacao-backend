@@ -19,16 +19,16 @@ public class ProdutoTest {
         final String nome = "TESTE";
         final Categoria categoria = Categoria.ELETRONICO;
 
-        final Produto produto = Produto.Builder.create()
+        final ProdutoRepository produtoREpository = ProdutoRepository.Builder.create()
                 .id(id)
                 .nome(nome)
                 .categoria(categoria)
                 .build();
 
-        assertNotNull(produto);
-        assertEquals(id, produto.getId());
-        assertEquals(nome, produto.getNome());
-        assertEquals(categoria, produto.getCategoria());
+        assertNotNull(produtoREpository);
+        assertEquals(id, produtoREpository.getId());
+        assertEquals(nome, produtoREpository.getNome());
+        assertEquals(categoria, produtoREpository.getCategoria());
     }
 
 }

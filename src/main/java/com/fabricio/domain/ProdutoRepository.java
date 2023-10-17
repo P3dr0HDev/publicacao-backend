@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "PRODUTOS")
-public class Produto {
+public class ProdutoRepository {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,10 +21,10 @@ public class Produto {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    public Produto() {
+    public ProdutoRepository() {
     }
 
-    public Produto(final UUID id, final String nome, final Categoria categoria) {
+    public ProdutoRepository(final UUID id, final String nome, final Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
@@ -44,37 +44,37 @@ public class Produto {
 
 
     public static final class Builder {
-        private Produto produto;
+        private ProdutoRepository produtoRepository;
 
-        private Builder(final Produto produto) {
-            this.produto = produto;
+        private Builder(final ProdutoRepository produtoRepository) {
+            this.produtoRepository = produtoRepository;
         }
 
         public static Builder create() {
-            return new Builder(new Produto());
+            return new Builder(new ProdutoRepository());
         }
 
-        public static Builder from(final Produto produto) {
-            return new Builder(produto);
+        public static Builder from(final ProdutoRepository produtoRepository) {
+            return new Builder(produtoRepository);
         }
 
         public Builder id(UUID id) {
-            this.produto.id = id;
+            this.produtoRepository.id = id;
             return this;
         }
 
         public Builder nome(String nome) {
-            this.produto.nome = nome;
+            this.produtoRepository.nome = nome;
             return this;
         }
 
         public Builder categoria(Categoria categoria) {
-            this.produto.categoria = categoria;
+            this.produtoRepository.categoria = categoria;
             return this;
         }
 
-        public Produto build() {
-            return produto;
+        public ProdutoRepository build() {
+            return produtoRepository;
         }
     }
 }

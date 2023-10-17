@@ -1,6 +1,6 @@
 package com.fabricio.domain.mapper;
 
-import com.fabricio.domain.Produto;
+import com.fabricio.domain.ProdutoRepository;
 import com.fabricio.domain.dto.ProdutoDTO;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +14,9 @@ public class ProdutoMapperTest {
     public void shouldCreateFromDto() {
         final ProdutoDTO dto = new ProdutoDTO(UUID.randomUUID(), "TESTE", "ELETRONICO");
 
-        final Produto produto = ProdutoMapper.fromDto(Produto.Builder.create(), dto);
+        final ProdutoRepository produtoREpository = ProdutoMapper.fromDto(ProdutoRepository.Builder.create(), dto);
 
-        assertEquals(dto.nome(), produto.getNome());
+        assertEquals(dto.nome(), produtoREpository.getNome());
     }
 
 }

@@ -1,15 +1,13 @@
 package com.fabricio.resource;
 
-import com.fabricio.domain.Produto;
+import com.fabricio.domain.ProdutoRepository;
 import com.fabricio.domain.dto.ProdutoDTO;
 import com.fabricio.domain.mapper.ProdutoMapper;
-import com.fabricio.domain.repositories.ProdutoRepository;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.jboss.resteasy.reactive.server.spi.ContentType;
 
 import java.util.List;
 
@@ -19,12 +17,12 @@ import java.util.List;
 public class ProdutoResource {
 
     @Inject
-    private ProdutoRepository repository;
+    private com.fabricio.domain.repositories.ProdutoRepository repository;
 
     @GET
     public Response findAll() {
-        final List<Produto> produtos = repository.findAll();
-        final List<ProdutoDTO> dtos = produtos.stream()
+        final List<ProdutoRepository> produtoRepositories = repository.findAll();
+        final List<ProdutoDTO> dtos = produtoRepositories.stream()
                 .map(ProdutoMapper::toDto)
                 .toList();
 
@@ -34,8 +32,8 @@ public class ProdutoResource {
     @POST
     @Transactional
     public Response create(final ProdutoDTO dto) {
-        final Produto produto = ProdutoMapper.fromDto(Produto.Builder.create(), dto);
-        repository.save(produto);
+        final ProdutoRepository produtoRepository = ProdutoMapper.fromDto(ProdutoRepository.Builder.create(), dto);
+        repository.save(produtoRepository);
 
         return Response.status(201).build();
     }
