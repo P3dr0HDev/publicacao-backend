@@ -23,3 +23,12 @@ jobs:
           cache: maven
       - name: Configuração
         run: mvn -B package --file pom.xml -DskipTests
+
+      - name: Testes
+        run: mvn test
+
+      - name: Resultados
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure()
+        with:
+          report_paths: 'target/surefire-reports/TEST-*.xml'
